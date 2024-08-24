@@ -1,0 +1,13 @@
+685,440,Fernando Zavala,9.39,2023-09-02,T
+49,844,Nehemias Lindao,5.25,2023-09-19,T
+314,845,Nehemias Lindao,9.21,2023-09-02,T
+816,240,Nehemias Lindao,8.36,2023-09-02,T
+183,754,Nehemias Lindao,5.32,2023-09-02,E
+563,574,Fernando Zavala,12.26,2023-09-03,T
+574,925,Fernando Zavala,5.82,2024-07-28,T
+530,322,Fernando Zavala,5.32,2024-07-28,E
+433,987,Fernando Zavala,8.74,2024-08-23,E
+970,324,Fernando Zavala,4.76,2024-08-23,E
+762,209,Fernando Zavala,2.24,2024-08-23,E
+536,536,Fernando Zavala,8.18,2024-08-23,E
+81,700,Fernando Zavala,7.62,2024-08-23,E
