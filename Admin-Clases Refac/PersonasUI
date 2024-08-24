@@ -1,0 +1,78 @@
+
+import applyStyles.AdminPersonas;
+
+public class PersonasUI {
+    private BorderPane root;
+    private TableView<Persona> tableView;
+
+    public PersonasUI(BorderPane root, TableView<Persona> tableView) {
+        this.root = root;
+        this.tableView = tableView;
+    }
+
+    public BorderPane getRoot() {
+        return root;
+    }
+
+    public void createContent(ArrayList<Persona> personas) {
+        String[] datos = {"Cedula", "Nombres", "Apellidos", "EstadoCivil"};
+        for (String campo : datos) {
+            TableColumn<Persona, String> column = new TableColumn<>(campo);
+            column.setCellValueFactory(new PropertyValueFactory<>(campo.toLowerCase()));
+            column.prefWidthProperty().bind(tableView.widthProperty().multiply(0.24));
+            tableView.getColumns().add(column);
+        }
+        tableView.getItems().addAll(personas);
+        root.setCenter(tableView);
+    }
+
+    public void createFormFields(Persona persona, BorderPane root, EventHandler<ActionEvent> onSave, EventHandler<ActionEvent> onClose) {
+        GridPane cntDatos = new GridPane();
+        cntDatos.setPadding(new Insets(20));
+        cntDatos.setHgap(25);
+        cntDatos.setVgap(15);
+
+        Label lblCedula = new Label("Cedula");
+        TextField txtCedula = new TextField(persona.getCedula());
+        txtCedula.setDisable(true);
+        cntDatos.add(lblCedula, 0, 0);
+        cntDatos.add(txtCedula, 1, 0);
+
+        Label lblNombres = new Label("Nombres");
+        TextField txtNombres = new TextField(persona.getNombres());
+        cntDatos.add(lblNombres, 0, 1);
+        cntDatos.add(txtNombres, 1, 1);
+
+        Label lblApellidos = new Label("Apellidos");
+        TextField txtApellidos = new TextField(persona.getApellidos());
+        cntDatos.add(lblApellidos, 0, 2);
+        cntDatos.add(txtApellidos, 1, 2);
+
+        Label lblEstado = new Label("Estado Civil");
+        ComboBox<EstadoCivil> cmbEstado = new ComboBox<>();
+        cmbEstado.getItems().setAll(EstadoCivil.values());
+        cmbEstado.setValue(persona.getEstadocivil());
+        cntDatos.add(lblEstado, 0, 3);
+        cntDatos.add(cmbEstado, 1, 3);
+
+        HBox cntBotones = new HBox(5);
+        cntBotones.setAlignment(Pos.CENTER);
+        
+        Button btnGuardar = new Button("Guardar");
+        btnGuardar.setOnAction(onSave);
+        
+        Button btnCerrar = new Button("Cerrar");
+        btnCerrar.setOnAction(onClose);
+        
+        cntBotones.getChildren().addAll(btnGuardar, btnCerrar);
+        root.setRight(new VBox(cntDatos, cntBotones));
+    }
+
+    public void showValidationAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error Dialog");
+        alert.setHeaderText("Ingreso de persona");
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+}
